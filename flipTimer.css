@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.flipTimer {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+  font-family: 'Roboto', sans-serif;
+}
+
+.flip-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.flip-title {
+  text-align: center;
+  color: #fff;
+  padding-top: 0.25em;
+  text-transform: uppercase;
+}
+
+.flip-cards {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.1em;
+  font-size: 60px;
+}
+
+.flip-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 120px;
+  border-radius: 0.1em;
+  box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.35);
+  position: relative;
+  overflow: hidden;
+  color: #917a7a;
+}
+
+.flip-card::before,
+.flip-card::after,
+.flip-card-top,
+.flip-card-bottom {
+  display: flex;
+  justify-content: center;
+  height: 50%;
+  width: 100%;
+  font-size: 1em;
+  line-height: 2em;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.flip-card::before,
+.flip-card::after {
+  flex-basis: 50%;
+}
+.flip-card::before {
+  content: attr(data-number-top);
+}
+.flip-card::after {
+  content: attr(data-number-bottom);
+}
+
+.flip-card-top,
+.flip-card-bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+.flip-card-top,
+.flip-card::before {
+  top: 0;
+  background: #e3e2e2;
+  border-radius: 0.1em 0.1em 0 0;
+  border-bottom: 1px solid rgba(120,120,120,0.2);
+  align-items: flex-start;
+}
+.flip-card::after,
+.flip-card-bottom {
+  bottom: 0;
+  background: #efefef;
+  border-radius: 0 0 0.1em 0.1em;
+  align-items: flex-end;
+}
+
+.flip-card-top {
+  transform-origin: bottom;
+}
+.flip-card-animating .flip-card-top {
+  transform: rotateX(-360deg);
+  box-shadow: 0px -1px 2px rgba(0, 0, 0, 0.35);
+  animation: 250ms ease-in flipClose both;
+}
+
+.flip-card-bottom {
+  transform-origin: top;
+}
+.flip-card-animating .flip-card-bottom {  
+  transform: rotateX(90deg);
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.35);
+  animation: 250ms ease-in 250ms flipOpen backwards;
+}
+
+@keyframes flipClose {  
+  100% {
+    transform: rotateX(-270deg);
+  }
+}
+
+@keyframes flipOpen {
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+@media(max-width: 480px) {
+  .container {
+    width: 90%;
+  }
+  .flip-cards {
+    font-size: 40px;
+  }
+  .flip-card {
+    height: 80px;
+  }
+}
